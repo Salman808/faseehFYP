@@ -1,0 +1,496 @@
+{% load static %}
+<head>
+    <title>Job Listing</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'DashBoard/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'DashBoard/lib/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'DashBoard/css/zabuto_calendar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'DashBoard/lib/gritter/css/jquery.gritter.css' %}" />
+    <!-- Custom styles for this template -->
+    <link href="{% static 'DashBoard/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'DashBoard/css/style-responsive.css' %}" rel="stylesheet">
+    <script src="{% static 'DashBoard/lib/chart-master/Chart.js' %}"></script>
+
+
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<header class="header black-bg">
+    <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+    </div>
+    <!--logo start-->
+    <a href="{% url 'users:dashboard_job_posting' %}" class="logo"><b>DASH<span>IO</span></b></a>
+    <!--logo end-->
+    <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+            <!-- settings start -->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="{% url 'users:index_job_posting' %}">
+                    <i class="fa fa-tasks"></i>
+                    <span class="badge bg-theme">4</span>
+                </a>
+                <ul class="dropdown-menu extended tasks-bar">
+                    <div class="notify-arrow notify-arrow-green"></div>
+                    <li>
+                        <p class="green">You have 4 pending tasks</p>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <div class="task-info">
+                                <div class="desc">Dashio Admin Panel</div>
+                                <div class="percent">40%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <div class="task-info">
+                                <div class="desc">Database Update</div>
+                                <div class="percent">60%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                    <span class="sr-only">60% Complete (warning)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <div class="task-info">
+                                <div class="desc">Product Development</div>
+                                <div class="percent">80%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <span class="sr-only">80% Complete</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <div class="task-info">
+                                <div class="desc">Payments Sent</div>
+                                <div class="percent">70%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                    <span class="sr-only">70% Complete (Important)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="external">
+                        <a href="#">See All Tasks</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- settings end -->
+            <!-- inbox dropdown start-->
+            <li id="header_inbox_bar" class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-theme">5</span>
+                </a>
+                <ul class="dropdown-menu extended inbox">
+                    <div class="notify-arrow notify-arrow-green"></div>
+                    <li>
+                        <p class="green">You have 5 new messages</p>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="photo"><img alt="avatar" src="{% static 'DashBoard/img/ui-zac.jpg' %}"></span>
+                            <span class="subject">
+                  <span class="from">Zac Snider</span>
+                  <span class="time">Just now</span>
+                  </span>
+                            <span class="message">
+                  Hi mate, how is everything?
+                  </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="photo"><img alt="avatar" src="{% static 'DashBoard/img/ui-divya.jpg' %}"></span>
+                            <span class="subject">
+                  <span class="from">Divya Manian</span>
+                  <span class="time">40 mins.</span>
+                  </span>
+                            <span class="message">
+                  Hi, I need your help with this.
+                  </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="photo"><img alt="avatar" src="{% static 'DashBoard/img/ui-danro.jpg' %}"></span>
+                            <span class="subject">
+                  <span class="from">Dan Rogers</span>
+                  <span class="time">2 hrs.</span>
+                  </span>
+                            <span class="message">
+                  Love your new Dashboard.
+                  </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="photo"><img alt="avatar" src="{% static 'DashBoard/img/ui-sherman.jpg' %}"></span>
+                            <span class="subject">
+                  <span class="from">Dj Sherman</span>
+                  <span class="time">4 hrs.</span>
+                  </span>
+                            <span class="message">
+                  Please, answer asap.
+                  </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">See all messages</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- inbox dropdown end -->
+            <!-- notification dropdown start-->
+            <li id="header_notification_bar" class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="badge bg-warning">7</span>
+                </a>
+                <ul class="dropdown-menu extended notification">
+                    <div class="notify-arrow notify-arrow-yellow"></div>
+                    <li>
+                        <p class="yellow">You have 7 new notifications</p>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                            Server Overloaded.
+                            <span class="small italic">4 mins.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="label label-warning"><i class="fa fa-bell"></i></span>
+                            Memory #2 Not Responding.
+                            <span class="small italic">30 mins.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                            Disk Space Reached 85%.
+                            <span class="small italic">2 hrs.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">
+                            <span class="label label-success"><i class="fa fa-plus"></i></span>
+                            New User Registered.
+                            <span class="small italic">3 hrs.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#">See all notifications</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- notification dropdown end -->
+        </ul>
+        <!--  notification end -->
+    </div>
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="logout" href="{% url 'users:logout'  %}">Logout</a></li>
+        </ul>
+    </div>
+</header><!-- #header -->
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Job Details
+                </h1>
+                <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="single.html"> Job Details</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start post Area -->
+<section class="post-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center d-flex">
+            <div class="col-lg-8 post-list">
+                <div class="single-post d-flex flex-row">
+                    <div class="thumb" style="margin-left: 30px">
+                        <img src="{% static 'img/post.png' %}" alt="">
+
+                    </div>
+                    <div class="details" style="margin-left: 80px">
+                        <div class="title d-flex flex-row justify-content-between">
+                            <div class="titles">
+                                <a href="#"><h4>{{ Job_Detail.Job_title }}</h4></a>
+                                <h6>Premium Labels Limited</h6>
+                            </div>
+                            {% if not status %}
+                            <ul class="btns" style="margin-left: 40px">
+                                <li><a href="#"><span class="lnr lnr-heart"></span></a></li>
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        Apply
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form id='faseehMaryam' class="form" method="post" enctype="multipart/form-data">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Application Form</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    {% csrf_token %}
+                                                    <div class="modal-body">
+                                                        {#                                                    <label for="saved_resume" value="Select From already uploaded Files"/>#}
+                                                        {#                                                    <select>#}
+                                                        {#                                                    </select>#}
+                                                        {#                                                    <br/><br/>#}
+                                                        {#                                                    Or#}
+                                                        <br/><br/>
+                                                        <label for="upload_file" value="Upload a File"/>
+                                                        <input id="fileupload" type="file" name="file" accept="image/x-png,image/gif,image/jpeg" />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary" >Upload</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <h5>Job Nature: {{ Job_Detail.job_nature }} </h5>
+                        <p class="address"><span class="lnr lnr-map"></span> {{ Job_Detail.City}} {{ Job_Detail.Country }}</p>
+                        <p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+                    </div>
+                </div>
+                <div class="single-post job-details">
+                    <h4 class="single-title">Whom we are looking for</h4>
+                    <p>
+                        {{Job_Detail.Job_Description}}
+                    </p>
+                    <p>
+                </div>
+
+            </div>
+            <div class="col-lg-4 sidebar">
+
+                <div class="single-slidebar">
+                    <h4>Top rated job posts</h4>
+                    <div class="active-relatedjob-carusel">
+                        <div class="single-rated">
+                            <img class="img-fluid" src="img/r1.jpg" alt="">
+                            <a href="single.html"><h4>Creative Art Designer</h4></a>
+                            <h6>Premium Labels Limited</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut dolore magna aliqua.
+                            </p>
+                            <h5>Job Nature: Full time</h5>
+                            <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p>
+                            <p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+                            <a href="#" class="btns text-uppercase">Apply job</a>
+                        </div>
+                        <div class="single-rated">
+                            <img class="img-fluid" src="img/r1.jpg" alt="">
+                            <a href="single.html"><h4>Creative Art Designer</h4></a>
+                            <h6>Premium Labels Limited</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut dolore magna aliqua.
+                            </p>
+                            <h5>Job Nature: Full time</h5>
+                            <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p>
+                            <p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+                            <a href="#" class="btns text-uppercase">Apply job</a>
+                        </div>
+                        <div class="single-rated">
+                            <img class="img-fluid" src="img/r1.jpg" alt="">
+                            <a href="single.html"><h4>Creative Art Designer</h4></a>
+                            <h6>Premium Labels Limited</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut dolore magna aliqua.
+                            </p>
+                            <h5>Job Nature: Full time</h5>
+                            <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p>
+                            <p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+                            <a href="#" class="btns text-uppercase">Apply job</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End post Area -->
+
+
+<!-- Start callto-action Area -->
+<section class="callto-action-area section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content col-lg-9">
+                <div class="title text-center">
+                    <h1 class="mb-10 text-white">Join us today without any hesitation</h1>
+                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                    <a class="primary-btn" href="#">I am a Candidate</a>
+                    <a class="primary-btn" href="#">We are an Employer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End calto-action Area -->
+
+<!-- start footer Area -->
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3  col-md-12">
+                <div class="single-footer-widget">
+                    <h6>Top Products</h6>
+                    <ul class="footer-nav">
+                        <li><a href="#">Managed Website</a></li>
+                        <li><a href="#">Manage Reputation</a></li>
+                        <li><a href="#">Power Tools</a></li>
+                        <li><a href="#">Marketing Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6  col-md-12">
+                <div class="single-footer-widget newsletter">
+                    <h6>Newsletter</h6>
+                    <p>You can trust us. we only send promo offers, not a single spam.</p>
+                    <div id="mc_embed_signup">
+                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+
+                            <div class="form-group row" style="width: 100%">
+                                <div class="col-lg-8 col-md-12">
+                                    <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
+                                    <div style="position: absolute; left: -5000px;">
+                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    <button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>
+                                </div>
+                            </div>
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-12">
+                <div class="single-footer-widget mail-chimp">
+                    <h6 class="mb-20">Instragram Feed</h6>
+                    <ul class="instafeed d-flex flex-wrap">
+                        <li><img src="img/i1.jpg" alt=""></li>
+                        <li><img src="img/i2.jpg" alt=""></li>
+                        <li><img src="img/i3.jpg" alt=""></li>
+                        <li><img src="img/i4.jpg" alt=""></li>
+                        <li><img src="img/i5.jpg" alt=""></li>
+                        <li><img src="img/i6.jpg" alt=""></li>
+                        <li><img src="img/i7.jpg" alt=""></li>
+                        <li><img src="img/i8.jpg" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row footer-bottom d-flex justify-content-between">
+            <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            <div class="col-lg-4 col-sm-12 footer-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End footer Area -->
+
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script src="js/easing.min.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/parallax.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+
+
+
