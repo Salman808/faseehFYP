@@ -19,6 +19,7 @@ from .Language_Processing.resumeParser import Parse
 from django.views import View
 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # class SignUpView(CreateView):
 #     form_class = ApplicantCreationForm
 #     success_url = reverse_lazy('users:login')
@@ -84,6 +85,7 @@ def edit(request, id):
         a.gender_preference=request.POST.get('gender_preference')
         a.save()
         return redirect('users:List_all_jobs')
+
     Job_Detail = Job_Post.objects.get(pk=id)
     return render(request,'edit_a_job.html', {'Job_Detail':Job_Detail})
 
@@ -141,9 +143,10 @@ def user_single_job_detail(request,id):
         if form.is_valid():
             a = form.save()
             AppliedJobs(applicant=request.user, resume=a,job=Job_Post.objects.get(pk=id)).save()
+            messages.add_message(request, messages.SUCCESS, 'User successfully Applied.')
             return redirect('users:applied_jobs')
         else:
-
+            messages.add_message(request, messages.SUCCESS, 'Error! Your applicat...')
             return render(request, "single_job_detail.html", {'Job_Detail': Job_Detail, 'errors':form.errors})
     return render(request, "single_job_detail.html", {'Job_Detail': Job_Detail,'status':status})
 
@@ -304,10 +307,12 @@ def blank(request):
     if request.user.is_company:
         return Http404
     a = Resume.objects.get(applicantID=request.user)
+    applicant = Applicant.objects.all()
     educations = Resume_Education.objects.filter(resumeID=a)
     skills = Resume_Skills.objects.filter(resumeID=a)
+    Activities = Resume_Activities.objects.filter(resumeID=a)
     if request.GET.get('pdf'):
-        pdf = render_to_pdf('pdf/cv_pdf.html', {'user':request.user, 'educations':educations,'resume':a,'skills':skills})
+        pdf = render_to_pdf('pdf/cv_pdf.html', {'user':request.user, 'educations':educations,'resume':a,'skills':skills,'Activities':Activities ,'applicant':applicant})
         return HttpResponse(pdf, content_type='application/pdf')
     return render(request,'blank.html', {'user':request.user, 'educations':educations,'resume':a,'skills':skills,'pdf':True})
 

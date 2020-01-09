@@ -240,7 +240,7 @@
     </div>
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="{% url 'users:logout'  %}">Logout</a></li>
+            <li><a class="logout" href="{% url 'users:index_job_posting'  %}">Logout</a></li>
         </ul>
     </div>
 </header><!-- #header -->
@@ -266,6 +266,11 @@
     <div class="container">
         <div class="row justify-content-center d-flex">
             <div class="col-lg-8 post-list">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
                 <div class="single-post d-flex flex-row">
                     <div class="thumb" style="margin-left: 30px">
                         <img src="{% static 'img/post.png' %}" alt="">
@@ -278,45 +283,45 @@
                                 <h6>Premium Labels Limited</h6>
                             </div>
                             {% if not status %}
-                            <ul class="btns" style="margin-left: 40px">
-                                <li><a href="#"><span class="lnr lnr-heart"></span></a></li>
-                                <li>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                        Apply
-                                    </button>
+                                <ul class="btns" style="margin-left: 40px">
+                                    <li><a href="#"><span class="lnr lnr-heart"></span></a></li>
+                                    <li>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            Apply
+                                        </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <form id='faseehMaryam' class="form" method="post" enctype="multipart/form-data">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Application Form</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    {% csrf_token %}
-                                                    <div class="modal-body">
-                                                        {#                                                    <label for="saved_resume" value="Select From already uploaded Files"/>#}
-                                                        {#                                                    <select>#}
-                                                        {#                                                    </select>#}
-                                                        {#                                                    <br/><br/>#}
-                                                        {#                                                    Or#}
-                                                        <br/><br/>
-                                                        <label for="upload_file" value="Upload a File"/>
-                                                        <input id="fileupload" type="file" name="file" accept="image/x-png,image/gif,image/jpeg" />
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary" >Upload</button>
-                                                    </div>
-                                                </form>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <form id='faseehMaryam' class="form" method="post" enctype="multipart/form-data">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Application Form</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        {% csrf_token %}
+                                                        <div class="modal-body">
+                                                            {#                                                    <label for="saved_resume" value="Select From already uploaded Files"/>#}
+                                                            {#                                                    <select>#}
+                                                            {#                                                    </select>#}
+                                                            {#                                                    <br/><br/>#}
+                                                            {#                                                    Or#}
+                                                            <br/><br/>
+                                                            <label for="upload_file" value="Upload a File"/>
+                                                            <input id="fileupload" type="file" name="file" accept="image/x-png,image/gif,image/jpeg" />
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-primary" >Upload</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
                             {% endif %}
                         </div>
                         <h5>Job Nature: {{ Job_Detail.job_nature }} </h5>

@@ -141,3 +141,5 @@ AUTH_USER_MODEL = 'users.Applicant'
 LOGIN_URL = 'users:login_form'
 LOGIN_REDIRECT_URL = 'users:dashboard_job_posting'
 LOGOUT_REDIRECT_URL = 'users:index_job_posting'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
