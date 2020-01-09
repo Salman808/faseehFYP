@@ -14,34 +14,56 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'DashBoard/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'DashBoard/lib/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'DashBoard/css/zabuto_calendar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'DashBoard/lib/gritter/css/jquery.gritter.css' %}" />
+    <!-- Custom styles for this template -->
+    <link href="{% static 'DashBoard/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'DashBoard/css/style-responsive.css' %}" rel="stylesheet">
+    <script src="{% static 'DashBoard/lib/chart-master/Chart.js' %}"></script>
+
+
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+
+
+
 </head>
 <body>
-<header id="header" id="home">
-    <div class="container">
-        <div class="row align-items-center justify-content-between d-flex">
-            <div id="logo">
-                <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-            </div>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="index.html">Home</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="category.html">Category</a></li>
-                    <li><a href="price.html">Price</a></li>
-                    <li><a href="blog-home.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="menu-has-children"><a href="">Pages</a>
-                        <ul>
-                            <li><a href="elements.html">elements</a></li>
-                            <li><a href="search.html">search</a></li>
-                            <li><a href="single.html">single</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="ticker-btn" href="#">Signup</a></li>
-                    <li><a class="ticker-btn" href="#">Login</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-        </div>
+<header class="header black-bg">
+
+    <!--logo start-->
+    <a href="{% url 'users:dashboard_job_posting' %}" class="logo"><b> {{ user.username }} </b></a>
+    <!--logo end-->
+
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="logout" href="{% url 'users:index_job_posting'  %}">Logout</a></li>
+        </ul>
     </div>
 </header><!-- #header -->
 <!-- start banner Area -->

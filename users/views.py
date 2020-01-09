@@ -20,10 +20,6 @@ from django.views import View
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-# class SignUpView(CreateView):
-#     form_class = ApplicantCreationForm
-#     success_url = reverse_lazy('users:login')
-#     template_name = 'register.html'
 
 @login_required
 def company_dashboard(request):
@@ -109,17 +105,10 @@ def ApplicationStatusChange(request, id, status):
     return redirect('users:List_all_jobs')
 
 
-# def List_all_jobs(request):
-#     Job_Detail = Job_Post.objects.filter(status=True).order_by('-posted_at')
-#     Application = AppliedJobs.objects.all()
-#     # profile_picture = company_profile.objects.all()
-#     # pic =
-#     return render(request, "category1.html", {'Job_Detail': Job_Detail, 'Application': Application})
-
-
 def latest_jobs(request):
 
         return render(request, 'latest_jobs.html')
+
 
 @login_required
 def profile(request, id):
@@ -150,10 +139,6 @@ def user_single_job_detail(request,id):
             return render(request, "single_job_detail.html", {'Job_Detail': Job_Detail, 'errors':form.errors})
     return render(request, "single_job_detail.html", {'Job_Detail': Job_Detail,'status':status})
 
-# def single_job_detail(request, id):
-#     Job_Detail = Job_Post.objects.get(pk=id)
-#
-#     return render(request, 'all_jobs_userEnd.html', {'Job_Detail': Job_Detail})
 
 @login_required
 def destroy(request, id):
@@ -165,9 +150,6 @@ def destroy(request, id):
 @login_required
 def edit_a_job(request,id):
     return render(request, 'edit_a_job.html')
-
-# def job_listings(request):
-#     return render(request, 'category1.html')
 
 
 def signup(request):
@@ -191,18 +173,6 @@ def company_registration_form(request):
             return redirect('users:login_form')
     form = company_profile()
     return render(request, 'company_registration_form.html', {'form': form})
-
-
-# def company_registration_form(request):
-#     return render(request,'company_registration_form.html')
-#     if request.method == 'POST':
-#         form = CompanyForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('users:login')
-#     else:
-#         form = company_profile()
-#     return render(request, 'company_registration_form.html', {'form': form})
 
 
 def model_form_upload(request):
@@ -326,7 +296,8 @@ def dashboard_job_posting(request):
     if request.user.is_company:
         return redirect('users:company_dashboard')
     allSkills = Resume_Skills.objects.filter(resumeID__applicantID=request.user).values('skill_names')
-    jobs= Job_Post.objects.filter(status=True, job_skill__title__icontains=allSkills).order_by('-posted_at')
+    allSkills = [i.get('skill_names') for i in allSkills]
+    jobs= Job_Post.objects.filter(status=True, job_skill__title__in=allSkills).order_by('-posted_at')
     return render(request,'testing.html',{'jobs':jobs,})
 
 
@@ -384,9 +355,11 @@ def cv_builder_tool_job_posting(request):
             Resume_Skills.objects.filter(resumeID=a).delete()
             Resume_Education.objects.filter(resumeID=a).delete()
             for i in request.POST.getlist('skills'):
-                Resume_Skills(resumeID=a,skill_names=i).save()
+                if i:
+                    Resume_Skills(resumeID=a,skill_names=i).save()
             for i in request.POST.getlist('education'):
-                Resume_Education(resumeID=a,name=i).save()
+                if i:
+                    Resume_Education(resumeID=a,name=i).save()
 
         except Resume.DoesNotExist:
             a = Resume(resume_summary=request.POST.get('summary'), applicantID=request.user,

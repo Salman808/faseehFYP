@@ -121,6 +121,7 @@ class Resume_Experience(models.Model):
     resumeID = models.ForeignKey(Resume, on_delete=models.CASCADE)  # Foreign key from Applicant table
     title = models.CharField(max_length=255, blank=True)
     company_name = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True)
     start = models.CharField(max_length=255, blank=True)
     end = models.CharField(max_length=255, blank=True)
 
