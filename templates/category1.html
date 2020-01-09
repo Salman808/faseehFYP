@@ -156,11 +156,7 @@
 
                                                                                             <ul class="btns" style="margin-left: 40px">
                                                                                                 <li><span class="lnr lnr-heart"><a href="{% url 'users:set_application_status' id=i.id status='AC'%}"> Accept </a></span></li>
-                                                                                                <li>
-                                                                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                                                                        Parse
-                                                                                                    </button>
-                                                                                                </li>
+                                                                                                <li><span class="lnr lnr-heart"><a href="#parse" > Parse </a></span></li>
                                                                                                 <li><span class="lnr lnr-heart" > <a href="{% url 'users:set_application_status' id=i.id status='RJ'%}">Reject </a></span> </li>
                                                                                             </ul>
                                                                                         {% endif %}
@@ -168,46 +164,9 @@
                                                                                     <p class="address"><span class="lnr lnr-map"></span> {{ i.job.City }} {{ i.job.Country }}</p>
                                                                                 </div>
                                                                             </div>
-                                                                            {#                                                                        <div class="single-post d-flex flex-row">#}
-                                                                            {#                                                                            <div class="thumb">#}
-                                                                            {#                                                                                <img src="{{ i.posted_by.avatar }}" alt="">#}
-                                                                            {##}
-                                                                            {#                                                                            </div>#}
-                                                                            {#                                                                            <div class="details" style="margin-left: 100px; margin-top: 10px">#}
-                                                                            {#                                                                                <div class="title d-flex flex-row justify-content-between">#}
-                                                                            {#                                                                                    <div class="titles">#}
-                                                                            {#                                                                                        <h3>{{ i.applicant.username }}</h3>#}
-                                                                            {#                                                                                        <h4>{{ i.applicant.email }}</h4>#}
-                                                                            {#                                                                                        <h4>{{ i.applicant.phone }}</h4>#}
-                                                                            {#                                                                                    </div>#}
-                                                                            {#                                                                                </div>#}
-                                                                            {##}
-                                                                            {#                                                                            </div>#}
-                                                                            {#                                                                        </div>#}
+
                                                                         {% endif %}
                                                                     {% endfor %}
-                                                                    {#                                                                {% for i in Application %}#}
-                                                                    {#                                                                    {% if i.job.id == Job_Detail.id %}#}
-                                                                    {##}
-                                                                    {#                                                                        <div class="single-post d-flex flex-row">#}
-                                                                    {#                                                                            <div class="thumb">#}
-                                                                    {#                                                                                <img src="{{ i.applicant }}" alt="">#}
-                                                                    {##}
-                                                                    {#                                                                            </div>#}
-                                                                    {#                                                                            <div class="details" style="margin-left: 100px; margin-top: 10px">#}
-                                                                    {#                                                                                <div class="title d-flex flex-row justify-content-between">#}
-                                                                    {#                                                                                    <div class="titles">#}
-                                                                    {#                                                                                    <a href="{% url 'users:user_single_job_detail' i.id %}"><h4>{{ i.Job_title }}</h4></a>#}
-                                                                    {#                                                                                    <a href="{% url 'users:user_single_job_detail' i.id %}"><h4>Creative Art Designer</h4></a>#}
-                                                                    {#                                                                                        <h6>{{i.applicant.first_name}} {{ i.applicant.last_name }}</h6>#}
-                                                                    {#                                                                                        <h6>{{i.applicant.username}}</h6>#}
-                                                                    {#                                                                                    </div>#}
-                                                                    {#                                                                                </div>#}
-                                                                    {##}
-                                                                    {#                                                                            </div>#}
-                                                                    {#                                                                        </div>#}
-                                                                    {#                                                                    {% endif %}#}
-                                                                    {#                                                                {% endfor %}#}
                                                                 </div>
                                                             </div>
                                                         </div>

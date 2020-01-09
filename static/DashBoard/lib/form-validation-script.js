@@ -1,14 +1,15 @@
 var Script = function () {
 
-    $.validator.setDefaults({
+  /*  $.validator.setDefaults({
         submitHandler: function() { alert("submitted!"); }
-    });
+    });*/
 
     $().ready(function() {
         // validate the comment form when it is submitted
-        $("#commentForm").validate();
+        // $("#commentForm").validate();
 
         // validate signup form on keyup and submit
+/*
         $("#signupForm").validate({
             rules: {
                 firstname: "required",
@@ -56,6 +57,7 @@ var Script = function () {
                 agree: "Please accept our policy"
             }
         });
+*/
 
         // propose username by combining first- and lastname
         $("#username").focus(function() {

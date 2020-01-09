@@ -93,8 +93,9 @@ def List_all_jobs(request):
         Job_Detail = Job_Post.objects.filter(Q(status=True) and Q(posted_by__company=request.user)).order_by('-posted_at')
         Application=AppliedJobs.objects.filter(~Q(status='RJ'),Q(job__posted_by__company=request.user))
         skills = Job_Skill.objects.filter(job_id__in=Job_Detail)
-        # pic =
-        return render(request, "category1.html", {'Job_Detail': Job_Detail,'Application':Application, 'skills':skills})
+        parsed_resumes = [{'data':Parse(i.resume.file.path),'application':i.resume.id} for i in Application]
+
+        return render(request, "category1.html", {'Job_Detail': Job_Detail,'Application':Application, 'skills':skills,'parsed_resume':parsed_resumes})
 
 def ApplicationStatusChange(request, id, status):
     application = AppliedJobs.objects.get(pk=id)
@@ -172,7 +173,7 @@ def company_registration_form(request):
             company.save()
             return redirect('users:login_form')
     form = company_profile()
-    return render(request, 'company_registration_form.html', {'form': form})
+    return render(request, 'registration/company_registration_form.html', {'form': form})
 
 
 def model_form_upload(request):
@@ -204,7 +205,13 @@ class BasicUploadView(View):
         data['uploaded_by'] = self.request.user
         form = DocumentForm(data, self.request.FILES, request.user)
         if form.is_valid():
+            your_media_root = settings.MEDIA_ROOT
+            file = form.cleaned_data.get('file').name
             photo = form.save()
+            path = os.path.join(photo.file.file.name)
+            # file_path = path + '\\' + file
+            data = Parse(files=[path])
+            print(data)
             data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
         else:
             data = {'is_valid': False}
@@ -288,7 +295,7 @@ def blank(request):
 
 
 def company_login_form(request):
-    return render(request, 'company_login_form.html')
+    return render(request, 'registration/login.html')
 
 # job_posting Views
 @login_required
@@ -297,7 +304,7 @@ def dashboard_job_posting(request):
         return redirect('users:company_dashboard')
     allSkills = Resume_Skills.objects.filter(resumeID__applicantID=request.user).values('skill_names')
     allSkills = [i.get('skill_names') for i in allSkills]
-    jobs= Job_Post.objects.filter(status=True, job_skill__title__in=allSkills).order_by('-posted_at')
+    jobs= set([i for i in Job_Post.objects.filter(status=True, job_skill__title__in=allSkills).order_by('-posted_at')])
     return render(request,'testing.html',{'jobs':jobs,})
 
 
