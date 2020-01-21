@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
 
-from users.validators import validate_file_extension
+from .validators import validate_file_extension
 
 
 class Applicant(AbstractUser):
