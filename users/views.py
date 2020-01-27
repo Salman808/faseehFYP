@@ -333,14 +333,14 @@ class DashBoardUserView(View):
             return redirect('users:company_dashboard')
         allSkills = Resume_Skills.objects.filter(resumeID__applicantID=request.user).values('skill_names')
         allSkills = [i.get('skill_names') for i in allSkills]
-        jobs= set([i for i in Job_Post.objects.filter(status=True, job_skill__title__in=allSkills).order_by('-posted_at')])
+        jobs= set([i for i in Job_Post.objects.filter(status=True, job_skill__title__in=allSkills, City=request.user.place).order_by('-posted_at')])
         return render(request,'testing.html',{'jobs':jobs,})
 
 
 class LatestJobsView(View):
 
     def get(self,request):
-        jobs= Job_Post.objects.filter(status=True).order_by('-posted_at')
+        jobs= Job_Post.objects.filter(status=True,City=request.user.place).order_by('-posted_at')
         return render(request,'view_latest_job.html',{'jobs':jobs,})
 
 
@@ -381,13 +381,16 @@ class ResumeBuilderView(View):
             c = None
             d = None
         return render(request, 'cv_builder_tool_job_posting.html',
-                      {'ResumeDetail': a, 'edu': b, 'skills': c, 'activities': d})
+                      {'ResumeDetail': a, 'edu': b, 'skills': c, 'activities': d,'request':request})
 
     def post(self,request):
         try:
+            usr = request.user
+            usr.place = request.POST.get('place')
+            usr.country = request.POST.get('country')
+            usr.save()
             a = Resume.objects.get(applicantID=request.user)
             a.resume_summary = request.POST.get('summary')
-            a.address = request.POST.get('address')
             Resume_Skills.objects.filter(resumeID=a).delete()
             Resume_Education.objects.filter(resumeID=a).delete()
             for i in request.POST.getlist('skills'):
