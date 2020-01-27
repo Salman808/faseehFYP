@@ -132,8 +132,8 @@
                                         <div class="col">
                                             <div class="collapse multi-collapse" id="multiCollapseExample1_{{  Job_Detail.id}}">
                                                 <div class="card card-body">
-                                                    <section>
-                                                        <div class="container">
+                                                    <section style="overflow: auto">
+                                                        <div class="container" >
                                                             <div class="row justify-content-center d-flex">
                                                                 <div class="col-lg-12 post-list">
                                                                     {% for i in Application %}
@@ -150,13 +150,24 @@
                                                                                             <a href="#"><h4>{{ i.applicant.first_name }} {{ i.applicant.last_name }}</h4></a>
                                                                                             <h6> {{ i.applicant.email }} </h6>
                                                                                             <h6> {{ i.applicant.phone }} </h6>
+                                                                                            {% for resum in parsed_resume %}
+                                                                                                {% if resum.application == i.resume.id %}
+                                                                                                    <details>
+                                                                                                        <summary> Parsed Data </summary>
+                                                                                                        <p>Name: {{ resum.data.name }}</p>
+                                                                                                        <p>Phone: {% for ph in resum.data.phone %}{{ ph }}{% endfor %}</p>
+                                                                                                        <p>Email: {% for em in resum.data.email %}{{ em }}{% endfor %}</p>
+                                                                                                        <p>Education: {% for deg in resum.data.degree %}{{ deg }}{% endfor %}</p>
+                                                                                                    </details>
+                                                                                                {% endif %}
+                                                                                            {% endfor %}
                                                                                             <a href="{{ i.resume.file.url }}">File </a>
                                                                                         </div>
                                                                                         {% if i.status != 'AC' %}
 
                                                                                             <ul class="btns" style="margin-left: 40px">
                                                                                                 <li><span class="lnr lnr-heart"><a href="{% url 'users:set_application_status' id=i.id status='AC'%}"> Accept </a></span></li>
-                                                                                                <li><span class="lnr lnr-heart"><a href="#parse" > Parse </a></span></li>
+                                                                                                {#                                                                                                <li><span class="lnr lnr-heart"><a href="#parse" > Parse </a></span></li>#}
                                                                                                 <li><span class="lnr lnr-heart" > <a href="{% url 'users:set_application_status' id=i.id status='RJ'%}">Reject </a></span> </li>
                                                                                             </ul>
                                                                                         {% endif %}

@@ -101,7 +101,7 @@ class JobListCompanyView(View):
         Job_Detail = Job_Post.objects.filter(Q(status=True) and Q(posted_by__company=request.user)).order_by('-posted_at')
         Application=AppliedJobs.objects.filter(~Q(status='RJ'),Q(job__posted_by__company=request.user))
         skills = Job_Skill.objects.filter(job_id__in=Job_Detail)
-        parsed_resumes = [{'data':Parse(i.resume.file.path),'application':i.resume.id} for i in Application]
+        parsed_resumes = [{'data':Parse(files=[i.resume.file.path]).information[-1],'application':i.resume.id} for i in Application]
 
         return render(request, "category1.html", {'Job_Detail': Job_Detail,'Application':Application, 'skills':skills,'parsed_resume':parsed_resumes})
 
