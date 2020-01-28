@@ -131,7 +131,7 @@
 										<div class="titles">
 											<a href="{% url 'users:user_single_job_detail' i.id %}"><h4>{{ i.Job_title }}</h4></a>
                                             <a href="{% url 'users:user_single_job_detail' i.id %}"><h4>Creative Art Designer</h4></a>
-											<h6>Premium Labels Limited</h6>
+											<h6>{{i.posted_by.company.username}}</h6>
 										</div>
 														</div>
 
