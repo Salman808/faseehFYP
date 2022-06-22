@@ -6,7 +6,7 @@ Django==3.0.2
 html5lib==1.0.1
 lxml==4.4.1
 nltk==3.4.5
-numpy==1.17.3
+numpy==1.22.0
 pdfminer.six==20181108
 Pillow==6.2.0
 pycparser==2.19
